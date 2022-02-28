@@ -4,10 +4,12 @@
 *.ear
 *.nar
 
-
 out/
 .idea/
 .idea_modules/
 *.iml
 *.ipr
 *.iws
+
+log/
+target/
