@@ -13,3 +13,7 @@ out/
 
 log/
 target/
+target/*
+gameengine/target/
+gameengine/target/*
+gameui/target/*
