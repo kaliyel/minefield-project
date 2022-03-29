@@ -1,0 +1,16 @@
+target/
+gameui/target/
+gameengine/target/
+
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+
+out/
+.idea/
+.idea_modules/
+*.iml
+*.ipr
+*.iws
