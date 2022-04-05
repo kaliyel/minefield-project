@@ -4,13 +4,21 @@ import it.unimol.gameengine.MineFieldGameHandler;
 import it.unimol.gameengine.exceptions.BoardCoordinatesOutOfBoundException;
 import it.unimol.gameengine.utils.CellContentID;
 import it.unimol.gameengine.utils.GameStatus;
-import static it.unimol.gameengine.utils.UtilStrings.*;
+
+import static it.unimol.gameengine.utils.UtilStrings.DEFEAT;
+import static it.unimol.gameengine.utils.UtilStrings.LOSER;
+import static it.unimol.gameengine.utils.UtilStrings.VICTORY;
+import static it.unimol.gameengine.utils.UtilStrings.WINNER;
+
 import it.unimol.gameui.gamegui.MainFrame;
 import it.unimol.gameui.gamegui.PanelValue;
 import it.unimol.gameui.gamemusic.EffectSoundPlayer;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URL;
@@ -18,13 +26,14 @@ import java.net.URL;
 class MineFieldButton extends JButton {
 
     private final int row;
+
     private final int column;
 
-    MineFieldButton(int row, int column) {
+    MineFieldButton(int rowInput, int columnInput) {
         super();
 
-        this.row = row;
-        this.column = column;
+        this.row = rowInput;
+        this.column = columnInput;
         Dimension preferredDimension = new Dimension(50, 50);
 
         this.setPreferredSize(preferredDimension);
@@ -53,15 +62,16 @@ class MineFieldButton extends JButton {
 
                         gameStatus = gameHandler.getGameStatus();
 
-                        if (gameStatus != null)
+                        if (gameStatus != null) {
                             showGameOverDialog(gameStatus);
+                        }
 
                     } catch (BoardCoordinatesOutOfBoundException ignored) {
                         assert false;
                     }
                 }
-                if (e.getButton() == MouseEvent.BUTTON3){
-                    if(getIcon() == null){
+                if (e.getButton() == MouseEvent.BUTTON3) {
+                    if (getIcon() == null) {
                         setFlag();
                     } else {
                         removeFlag();
@@ -85,7 +95,7 @@ class MineFieldButton extends JButton {
         this.setIcon(victoryIcon);
     }
 
-    private void showGameOverDialog(GameStatus gameStatus){
+    private void showGameOverDialog(GameStatus gameStatus) {
         switch (gameStatus) {
             case WINNER:
                 String victoryIconPath = "/victory.png";
@@ -119,6 +129,7 @@ class MineFieldButton extends JButton {
                         defeatIcon);
                 returnToMenu();
                 break;
+            default: break;
         }
     }
 
@@ -126,8 +137,8 @@ class MineFieldButton extends JButton {
         MainFrame.getInstance().showPanel(PanelValue.MAIN_MENU);
     }
 
-    private void changeSpaceToContent(CellContentID cellContent){
-        if(getIcon() != null){
+    private void changeSpaceToContent(CellContentID cellContent) {
+        if (getIcon() != null) {
             removeFlag();
         }
         switch (cellContent) {
@@ -144,6 +155,7 @@ class MineFieldButton extends JButton {
             case SAFESPACE:
                 setBackground(Color.GREEN);
                 break;
+            default: break;
         }
     }
 }

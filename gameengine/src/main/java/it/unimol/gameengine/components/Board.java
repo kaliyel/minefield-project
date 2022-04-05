@@ -4,13 +4,12 @@ import it.unimol.gameengine.exceptions.BoardCoordinatesOutOfBoundException;
 import it.unimol.gameengine.exceptions.WrongBoardSizeException;
 import it.unimol.gameengine.exceptions.WrongBombQuantityException;
 import it.unimol.gameengine.utils.CellContentID;
+import it.unimol.gameengine.utils.UtilStrings;
 
-import java.awt.*;
+import java.awt.Point;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
-
-import static it.unimol.gameengine.utils.UtilStrings.*;
 
 /**
  * Class implementation of a generic (n x m) Board.
@@ -19,37 +18,42 @@ import static it.unimol.gameengine.utils.UtilStrings.*;
  */
 public abstract class Board {
     private final int rows;
+
     private final int columns;
+
     private final Cell[][] board;
+
     private Random random;
+
     private final int bombs;
 
     /**
-     * Class constructor that creates a new ({@code rows}x{@code columns}) Board and
-     * sets n.{@code bombs} bombs in random positions.<br>
-     * @param rows Number of rows of the Board
-     * @param columns Number of columns of the Board
-     * @param bombs Number of bombs inside the Board
-     * @throws WrongBoardSizeException If {@code rows} or {@code columns} are less than 0 or greater than 8
-     * @throws WrongBombQuantityException if {@code bombs} is less or equal to 0 or
+     * Class constructor that creates a new ({@code inputRows}x{@code inputColumns}) Board and
+     * sets n.{@code inputBombs} inputBombs in random positions.<br>
+     * @param inputRows Number of inputRows of the Board
+     * @param inputColumns Number of inputColumns of the Board
+     * @param inputBombs Number of inputBombs inside the Board
+     * @throws WrongBoardSizeException If {@code inputRows} or {@code inputColumns} are less than 0 or greater than 8
+     * @throws WrongBombQuantityException if {@code inputBombs} is less or equal to 0 or
      * if it's greater then 2/3 of the number of cells rounded down
      */
-    protected Board(int rows, int columns, int bombs) throws
+    protected Board(int inputRows, int inputColumns, int inputBombs) throws
             WrongBoardSizeException,
             WrongBombQuantityException {
 
-        final int maxBombs = 2 * ((rows * columns) / 3);
-        if ((rows <= 0) || (rows > 8) || (columns <= 0) || (columns > 8))
+        final int maxBombs = 2 * ((inputRows * inputColumns) / 3);
+        if ((inputRows <= 0) || (inputRows > 8) || (inputColumns <= 0) || (inputColumns > 8)) {
             throw new WrongBoardSizeException();
-        if (bombs <= 0 || bombs > maxBombs){
+        }
+        if (inputBombs <= 0 || inputBombs > maxBombs) {
             throw new WrongBombQuantityException(
-                    BOMBSINSERTED + bombs + MAXBOMBS + maxBombs);
+                    UtilStrings.BOMBSINSERTED + inputBombs + UtilStrings.MAXBOMBS + maxBombs);
         }
 
-        this.rows = rows;
-        this.columns = columns;
-        this.bombs = bombs;
-        this.board = new Cell[rows][columns];
+        this.rows = inputRows;
+        this.columns = inputColumns;
+        this.bombs = inputBombs;
+        this.board = new Cell[inputRows][inputColumns];
 
         this.initializeBoardContent();
     }
@@ -60,13 +64,16 @@ public abstract class Board {
      * @param column Column index (from 0 to the number of columns -1)
      * @return the cell at coordinates ({@code row}, {@code column})
      * @throws BoardCoordinatesOutOfBoundException if {@code row} or {@code column} are less then 0 or
-     * if {@code row} or {@code column} are greater or equal to (respectively) the number of rows or the number of columns
+     * if {@code row} or {@code column} are greater or equal to (respectively) the number of rows or
+     * the number of columns
      */
     public Cell getCell(int row, int column) throws BoardCoordinatesOutOfBoundException {
-        if (row < 0 || row >= this.rows)
+        if (row < 0 || row >= this.rows) {
             throw new BoardCoordinatesOutOfBoundException();
-        if (column < 0 || column >= this.columns)
+        }
+        if (column < 0 || column >= this.columns) {
             throw new BoardCoordinatesOutOfBoundException();
+        }
 
         return this.board[row][column];
     }
@@ -79,13 +86,15 @@ public abstract class Board {
      * of rows of the board
      */
     public int getBombQuantityByRow(int row) throws BoardCoordinatesOutOfBoundException {
-        if (row < 0 || row >= this.rows)
+        if (row < 0 || row >= this.rows) {
             throw new BoardCoordinatesOutOfBoundException();
+        }
         int bombQuantity = 0;
 
-        for(int j = 0; j < this.columns; j++){
-            if (this.board[row][j].getContentID() == CellContentID.BOMB)
+        for (int j = 0; j < this.columns; j++) {
+            if (this.board[row][j].getContentID() == CellContentID.BOMB) {
                 bombQuantity++;
+            }
         }
 
         return bombQuantity;
@@ -99,7 +108,7 @@ public abstract class Board {
         return this.columns;
     }
 
-    public int getBombs(){
+    public int getBombs() {
         return this.bombs;
     }
 
@@ -111,29 +120,32 @@ public abstract class Board {
      * of columns of the board
      */
     public int getBombQuantityByColumn(int column) throws BoardCoordinatesOutOfBoundException {
-        if (column < 0 || column >= this.columns)
+        if (column < 0 || column >= this.columns) {
             throw new BoardCoordinatesOutOfBoundException();
-        int bombs = 0;
+        }
+        int bombsInColumn = 0;
 
         for (int i = 0; i < this.rows; i++) {
-            if (this.board[i][column].getContentID() == CellContentID.BOMB)
-                bombs++;
+            if (this.board[i][column].getContentID() == CellContentID.BOMB) {
+                bombsInColumn++;
+            }
         }
 
-        return bombs;
+        return bombsInColumn;
     }
 
     /**
      * Checks if all the Cells that contain Safespaces are marked
      * @return {@code true} if all the Cells that contain Safespaces are marked, {@code false} otherwise
      */
-    public boolean isAllMarked(){
+    public boolean isAllMarked() {
         int safeSpaces = (this.rows * this.columns) - this.bombs;
 
-        for (int i = 0; i <  this.rows; i++) {
+        for (int i = 0; i < this.rows; i++) {
             for (int j = 0; j < this.columns; j++) {
-                if (this.board[i][j].isMarked())
+                if (this.board[i][j].isMarked()) {
                     safeSpaces--;
+                }
             }
         }
         return (safeSpaces == 0);
@@ -157,14 +169,14 @@ public abstract class Board {
         }
     }
 
-    private List<Point> generateBombCoordinates(){
+    private List<Point> generateBombCoordinates() {
         int x, y;
         int lastingBombs = this.bombs;
 
         Point bombCoordinate;
         List<Point> allBombCoordinates = new LinkedList<>();
 
-        while(lastingBombs > 0) {
+        while (lastingBombs > 0) {
             x = random.nextInt(this.rows);
             y = random.nextInt(this.columns);
             bombCoordinate = new Point(x, y);

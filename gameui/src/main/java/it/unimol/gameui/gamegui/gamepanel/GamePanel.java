@@ -1,8 +1,12 @@
 package it.unimol.gameui.gamegui.gamepanel;
-import static it.unimol.gameengine.utils.UtilStrings.*;
 
-import javax.swing.*;
-import java.awt.*;
+import static it.unimol.gameengine.utils.UtilStrings.MINEFIELD;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 
 /**
  * Graphic implementation of the Game Board
@@ -13,7 +17,7 @@ public class GamePanel extends JPanel {
     /**
      * Class Constructor that initializes the Panel
      */
-    public GamePanel(){
+    public GamePanel() {
         super();
         this.setSize(500, 470);
         this.setBackground(Color.DARK_GRAY);
@@ -22,7 +26,7 @@ public class GamePanel extends JPanel {
     /**
      * Generates a new GameBoard
      */
-    public void startGame(){
+    public void startGame() {
         this.removeAll();
 
         JLabel gameName = new JLabel(MINEFIELD);

@@ -3,15 +3,23 @@ package it.unimol.gameui.gamegui.gamepanel;
 import it.unimol.gameengine.MineFieldGameHandler;
 import it.unimol.gameengine.exceptions.BoardCoordinatesOutOfBoundException;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 
 class BoardPanel extends JPanel {
     private final MineFieldBoard board;
+
     private final JPanel rowBombs;
+
     private final JPanel columnBombs;
 
-    BoardPanel(){
+    BoardPanel() {
         super();
 
         this.columnBombs = new JPanel();
@@ -61,9 +69,9 @@ class BoardPanel extends JPanel {
         MineFieldGameHandler gameHandler = MineFieldGameHandler.getInstance();
         int rows = gameHandler.getGameBoardRows();
         JLabel tempLabel;
-        Dimension preferredDim = new Dimension(50,50);
+        Dimension preferredDim = new Dimension(50, 50);
 
-        this.rowBombs.setLayout(new GridLayout(0,1));
+        this.rowBombs.setLayout(new GridLayout(0, 1));
 
         for (int i = 0; i < rows; i++) {
             try {

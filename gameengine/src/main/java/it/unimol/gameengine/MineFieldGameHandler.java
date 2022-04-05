@@ -13,10 +13,11 @@ import it.unimol.gameengine.utils.GameStatus;
  *
  * @author Maurizio Albani
  */
-public class MineFieldGameHandler {
-    private static final MineFieldGameHandler instance = new MineFieldGameHandler();
-    public static MineFieldGameHandler getInstance(){
-        return MineFieldGameHandler.instance;
+public final class MineFieldGameHandler {
+    private static final MineFieldGameHandler INSTANCE = new MineFieldGameHandler();
+
+    public static MineFieldGameHandler getInstance() {
+        return MineFieldGameHandler.INSTANCE;
     }
 
     private static MineFieldBoard gameBoard;
@@ -49,8 +50,9 @@ public class MineFieldGameHandler {
     public void markCell(int row, int column) throws BoardCoordinatesOutOfBoundException {
         assert gameBoard != null;
         Cell cell = gameBoard.getCell(row, column);
-        if (cell.isMarked())
+        if (cell.isMarked()) {
             return;
+        }
         cell.markCell();
     }
 
@@ -60,13 +62,13 @@ public class MineFieldGameHandler {
      * {@code GameStatus.GAMEOVER} if the player lost,
      * {@code GameStatus.PLAYING} otherwise
      */
-    public GameStatus getGameStatus(){
+    public GameStatus getGameStatus() {
         assert gameBoard != null;
-        if (this.checkIfWinner()){
+        if (this.checkIfWinner()) {
             return GameStatus.WINNER;
-        } else if(this.checkIfLoser()) {
+        } else if (this.checkIfLoser()) {
             return GameStatus.GAMEOVER;
-        } else{
+        } else {
             return GameStatus.PLAYING;
         }
     }
@@ -111,7 +113,7 @@ public class MineFieldGameHandler {
     /**
      * @return the number of Rows of the board
      */
-    public int getGameBoardRows(){
+    public int getGameBoardRows() {
         assert gameBoard != null;
         return gameBoard.getRows();
     }
@@ -119,7 +121,7 @@ public class MineFieldGameHandler {
     /**
      * @return the number of Columns of the board
      */
-    public int getGameBoardColumns(){
+    public int getGameBoardColumns() {
         assert gameBoard != null;
         return gameBoard.getColumns();
     }
@@ -135,8 +137,8 @@ public class MineFieldGameHandler {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
                 try {
-                    cell =gameBoard.getCell(i, j);
-                    if(cell.isMarked()) {
+                    cell = gameBoard.getCell(i, j);
+                    if (cell.isMarked()) {
                         if (cell.getContentID() == CellContentID.BOMB) {
                             return true;
                         }

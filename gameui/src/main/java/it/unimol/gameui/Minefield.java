@@ -7,8 +7,10 @@ import it.unimol.gameui.gamegui.MainFrame;
  *
  * @author Maurizio Albani
  */
-public class Minefield {
-    public static void main(String[] args){
+public final class Minefield {
+    private Minefield() { }
+
+    public static void main(String[] args) {
         MainFrame.getInstance().setVisible(true);
     }
 }

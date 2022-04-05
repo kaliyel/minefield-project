@@ -1,4 +1,4 @@
 package it.unimol.gameengine.exceptions;
 
-public class WrongBoardSizeException extends Exception{
+public class WrongBoardSizeException extends Exception {
 }

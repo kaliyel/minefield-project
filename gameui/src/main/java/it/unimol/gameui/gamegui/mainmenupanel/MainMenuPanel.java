@@ -1,11 +1,23 @@
 package it.unimol.gameui.gamegui.mainmenupanel;
 
-import static it.unimol.gameengine.utils.UtilStrings.*;
+import static it.unimol.gameengine.utils.UtilStrings.INFO;
+import static it.unimol.gameengine.utils.UtilStrings.MINEFIELD;
+import static it.unimol.gameengine.utils.UtilStrings.NEWGAME;
+import static it.unimol.gameengine.utils.UtilStrings.QUIT;
+import static it.unimol.gameengine.utils.UtilStrings.WANNAQUIT;
+
 import it.unimol.gameui.gamegui.MainFrame;
 import it.unimol.gameui.gamegui.PanelValue;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -16,8 +28,11 @@ import java.awt.event.MouseEvent;
  */
 public class MainMenuPanel extends JPanel {
     private JLabel gameName;
+
     private JButton newGameButton;
+
     private JButton gameInfoButton;
+
     private JButton exitGameButton;
 
     /**
@@ -119,7 +134,7 @@ public class MainMenuPanel extends JPanel {
                         QUIT,
                         JOptionPane.YES_NO_OPTION,
                         JOptionPane.WARNING_MESSAGE);
-                if (choice == JOptionPane.YES_OPTION){
+                if (choice == JOptionPane.YES_OPTION) {
                     System.exit(0);
                 }
             }

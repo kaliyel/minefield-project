@@ -9,9 +9,10 @@ import it.unimol.gameengine.utils.CellContentID;
  */
 public class Cell {
     private CellContentID contentID;
+
     private boolean cellStatus;
 
-    Cell(){
+    Cell() {
         this.cellStatus = false;
     }
 
@@ -45,9 +46,9 @@ public class Cell {
         return this.contentID;
     }
 
-    void setContentID(CellContentID contentID) {
+    void setContentID(CellContentID id) {
         assert this.contentID == null;
-        assert contentID != null;
-        this.contentID = contentID;
+        assert id != null;
+        this.contentID = id;
     }
 }

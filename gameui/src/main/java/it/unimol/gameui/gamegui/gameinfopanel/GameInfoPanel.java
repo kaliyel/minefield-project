@@ -3,13 +3,26 @@ package it.unimol.gameui.gamegui.gameinfopanel;
 import it.unimol.gameui.gamegui.MainFrame;
 import it.unimol.gameui.gamegui.PanelValue;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URL;
 
-import static it.unimol.gameengine.utils.UtilStrings.*;
+import static it.unimol.gameengine.utils.UtilStrings.BYAUTHOR;
+import static it.unimol.gameengine.utils.UtilStrings.INDICATOR_SCENE;
+import static it.unimol.gameengine.utils.UtilStrings.LOSING_SCENE;
+import static it.unimol.gameengine.utils.UtilStrings.MAINMENU;
+import static it.unimol.gameengine.utils.UtilStrings.MINEFIELD;
+import static it.unimol.gameengine.utils.UtilStrings.NEWGAME;
+import static it.unimol.gameengine.utils.UtilStrings.TUTORIAL;
 
 /**
  * Graphic implementation of an Informative Screen for the Game
@@ -19,20 +32,27 @@ import static it.unimol.gameengine.utils.UtilStrings.*;
 public class GameInfoPanel extends JPanel {
 
     private JLabel gameNameLbl;
+
     private JLabel gameAuthorLbl;
+
     private JLabel gameTutorialLbl;
+
     private JLabel indicatorSceneIcoLbl;
+
     private JLabel indicatorSceneLbl;
+
     private JLabel losingSceneIcoLbl;
+
     private JLabel losingSceneLbl;
 
     private JButton goBackBtn;
+
     private JButton startGameBtn;
 
     /**
      * Class constructor that initializes the InfoScreen and it's contents
      */
-    public GameInfoPanel(){
+    public GameInfoPanel() {
         super();
         this.setSize(500, 470);
         this.setLayout(new GridBagLayout());
@@ -51,11 +71,11 @@ public class GameInfoPanel extends JPanel {
     private void initializeTexts() {
         this.gameNameLbl = new JLabel(MINEFIELD);
         this.gameNameLbl.setForeground(Color.RED);
-        this.gameNameLbl.setFont(new Font (this.gameNameLbl.getFont().getName(), Font.PLAIN, 30));
+        this.gameNameLbl.setFont(new Font(this.gameNameLbl.getFont().getName(), Font.PLAIN, 30));
 
         this.gameAuthorLbl = new JLabel(BYAUTHOR);
         this.gameAuthorLbl.setForeground(Color.WHITE);
-        this.gameAuthorLbl.setFont(new Font (this.gameAuthorLbl.getFont().getName(), Font.BOLD, 15));
+        this.gameAuthorLbl.setFont(new Font(this.gameAuthorLbl.getFont().getName(), Font.BOLD, 15));
 
         this.gameTutorialLbl = new JLabel(TUTORIAL);
         this.gameTutorialLbl.setForeground(Color.WHITE);

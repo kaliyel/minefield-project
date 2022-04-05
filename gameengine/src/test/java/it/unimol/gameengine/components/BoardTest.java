@@ -4,12 +4,11 @@ import it.unimol.gameengine.exceptions.BoardCoordinatesOutOfBoundException;
 import it.unimol.gameengine.exceptions.WrongBoardSizeException;
 import it.unimol.gameengine.exceptions.WrongBombQuantityException;
 import it.unimol.gameengine.utils.CellContentID;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class BoardTest {
 
@@ -60,24 +59,24 @@ class BoardTest {
         //Case 1: all parameters are correct
         resetCheckers();
         newBoard(3, 3, 5);
-        assertFalse(wrongBoardSize);
-        assertFalse(wrongBombQuantity);
-        assertNotNull(tempBoard);
+        Assertions.assertFalse(wrongBoardSize);
+        Assertions.assertFalse(wrongBombQuantity);
+        Assertions.assertNotNull(tempBoard);
 
         //Case 2: Row Parameter or column or both are Incorrect
         resetCheckers();
         newBoard(-5, 0, 2);
-        assertTrue(wrongBoardSize);
-        assertFalse(wrongBombQuantity);
-        assertNull(tempBoard);
+        Assertions.assertTrue(wrongBoardSize);
+        Assertions.assertFalse(wrongBombQuantity);
+        Assertions.assertNull(tempBoard);
 
         //Case 3: Row and Column are correct, Number of Bombs incorrect;
         //I expect the maximum to be (5*10) = 50 / 3 = 16 * 2 = 38, so i'll insert 39
         resetCheckers();
         newBoard(5, 8, 39);
-        assertFalse(wrongBoardSize);
-        assertTrue(wrongBombQuantity);
-        assertNull(tempBoard);
+        Assertions.assertFalse(wrongBoardSize);
+        Assertions.assertTrue(wrongBombQuantity);
+        Assertions.assertNull(tempBoard);
     }
 
     @Test
@@ -86,15 +85,15 @@ class BoardTest {
         resetCheckers();
         newBoard(5, 5, 5);
         getACell(2, 3);
-        assertFalse(wrongBoardCoordinates);
-        assertNotNull(cell);
+        Assertions.assertFalse(wrongBoardCoordinates);
+        Assertions.assertNotNull(cell);
 
         //Case 2: incorrect Row or Column
         resetCheckers();
         newBoard(5, 5, 5);
         getACell(7, 4);
-        assertTrue(wrongBoardCoordinates);
-        assertNull(cell);
+        Assertions.assertTrue(wrongBoardCoordinates);
+        Assertions.assertNull(cell);
     }
 
 
@@ -105,7 +104,7 @@ class BoardTest {
         } catch (BoardCoordinatesOutOfBoundException e) {
             wrongBoardCoordinates =true;
         }
-        assertNotEquals(-1, bombs);
+        Assertions.assertNotEquals(-1, bombs);
         return bombs;
     }
 
@@ -128,14 +127,14 @@ class BoardTest {
         for (int i = 0; i < rows; i++){
             tempBombCounter = getRowBombs(i);
             list.add(tempBombCounter);
-            assertFalse(wrongBoardCoordinates);
+            Assertions.assertFalse(wrongBoardCoordinates);
         }
 
         for (Integer bombsInRaw: list) {
             totalBombsFound += bombsInRaw;
         }
 
-        assertEquals(bombs, totalBombsFound);
+        Assertions.assertEquals(bombs, totalBombsFound);
     }
 
     private int getColumnBombs(int column){
@@ -145,7 +144,7 @@ class BoardTest {
         } catch (BoardCoordinatesOutOfBoundException e) {
             wrongBoardCoordinates =true;
         }
-        assertNotEquals(-1, bombs);
+        Assertions.assertNotEquals(-1, bombs);
         return bombs;
     }
 
@@ -166,14 +165,14 @@ class BoardTest {
         for (int i = 0; i < columns; i++){
             tempBombCounter = getColumnBombs(i);
             list.add(tempBombCounter);
-            assertFalse(wrongBoardCoordinates);
+            Assertions.assertFalse(wrongBoardCoordinates);
         }
 
         for (Integer bombsInColumn: list) {
             totalBombsFound += bombsInColumn;
         }
 
-        assertEquals(bombs, totalBombsFound);
+        Assertions.assertEquals(bombs, totalBombsFound);
     }
 
     private void markSafespaces(int rows, int columns){
@@ -203,11 +202,11 @@ class BoardTest {
         newBoard(rows, columns, bombs);
 
         allMarkStatus = this.tempBoard.isAllMarked();
-        assertFalse(allMarkStatus);
+        Assertions.assertFalse(allMarkStatus);
 
         markSafespaces(rows, columns);
         allMarkStatus = this.tempBoard.isAllMarked();
-        assertTrue(allMarkStatus);
+        Assertions.assertTrue(allMarkStatus);
     }
 
 }

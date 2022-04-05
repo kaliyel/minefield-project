@@ -2,11 +2,12 @@ package it.unimol.gameui.gamegui.gamepanel;
 
 import it.unimol.gameengine.MineFieldGameHandler;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JPanel;
+import java.awt.GridLayout;
 
 class MineFieldBoard extends JPanel {
     private final int rows;
+
     private final int columns;
 
     MineFieldBoard() {

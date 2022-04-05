@@ -6,7 +6,7 @@ import it.unimol.gameui.gamegui.gamepanel.GamePanel;
 import it.unimol.gameui.gamegui.mainmenupanel.MainMenuPanel;
 import it.unimol.gameui.gamemusic.BackgroundMusicHandler;
 
-import javax.swing.*;
+import javax.swing.JFrame;
 
 /**
  * Class Singleton that implements the Main Window of the game.<br>
@@ -16,16 +16,19 @@ import javax.swing.*;
  *
  * @author Maurizio Albani
  */
-public class MainFrame extends JFrame {
-    private static final MainFrame instance = new MainFrame();
+public final class MainFrame extends JFrame {
+    private static final MainFrame INSTANCE = new MainFrame();
 
     public static MainFrame getInstance() {
-        return instance;
+        return INSTANCE;
     }
 
     private static GamePanel gamePanel;
+
     private static DifficultyPanel difficultyPanel;
+
     private static MainMenuPanel mainMenuPanel;
+
     private static GameInfoPanel infoPanel;
 
     private MainFrame() {
@@ -53,8 +56,8 @@ public class MainFrame extends JFrame {
      * Changes the content that is visualized inside the MainWindow according to the parameter passed as Input
      * @param value indicates the panel to set visible (possible values are described in :{@link PanelValue})
      */
-    public void showPanel(PanelValue value){
-        switch(value){
+    public void showPanel(PanelValue value) {
+        switch (value) {
             case MAIN_MENU:
                 mainMenuPanel.setVisible(true);
                 difficultyPanel.setVisible(false);
@@ -79,6 +82,7 @@ public class MainFrame extends JFrame {
                 gamePanel.setVisible(false);
                 infoPanel.setVisible(true);
                 break;
+            default: break;
         }
     }
 }

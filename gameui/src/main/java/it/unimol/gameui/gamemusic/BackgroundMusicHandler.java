@@ -1,17 +1,21 @@
 package it.unimol.gameui.gamemusic;
 
-import javax.sound.sampled.*;
-import java.io.*;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
 import java.net.URL;
 
 /**
  * Class extension of a Thread that implements a Handler for the Audio of the Game
  */
-public class BackgroundMusicHandler extends Thread {
-    private static final BackgroundMusicHandler instance = new BackgroundMusicHandler();
+public final class BackgroundMusicHandler extends Thread {
+    private static final BackgroundMusicHandler INSTANCE = new BackgroundMusicHandler();
 
     public static BackgroundMusicHandler getInstance() {
-        return instance;
+        return INSTANCE;
     }
 
     private BackgroundMusicHandler() {

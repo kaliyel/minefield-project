@@ -7,12 +7,36 @@ import it.unimol.gameui.gamegui.MainFrame;
 import it.unimol.gameui.gamegui.PanelValue;
 import it.unimol.gameui.gamegui.gamepanel.GamePanel;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import static it.unimol.gameengine.utils.UtilStrings.*;
+import static it.unimol.gameengine.utils.UtilStrings.CHOSEDIFFICULTY;
+import static it.unimol.gameengine.utils.UtilStrings.CONFIRM;
+import static it.unimol.gameengine.utils.UtilStrings.CUSTOM;
+import static it.unimol.gameengine.utils.UtilStrings.EASY;
+import static it.unimol.gameengine.utils.UtilStrings.HARD;
+import static it.unimol.gameengine.utils.UtilStrings.MAINMENU;
+import static it.unimol.gameengine.utils.UtilStrings.MINEFIELD;
+import static it.unimol.gameengine.utils.UtilStrings.NBOMBS;
+import static it.unimol.gameengine.utils.UtilStrings.NCOLUMNS;
+import static it.unimol.gameengine.utils.UtilStrings.NORMAL;
+import static it.unimol.gameengine.utils.UtilStrings.NROWS;
+import static it.unimol.gameengine.utils.UtilStrings.WRONGBOARDSIZE;
+import static it.unimol.gameengine.utils.UtilStrings.WRONGBOARDSIZETITLE;
+import static it.unimol.gameengine.utils.UtilStrings.WRONGBOMBNUMBER;
+import static it.unimol.gameengine.utils.UtilStrings.WRONGBOMBNUMBERTITLE;
+import static it.unimol.gameengine.utils.UtilStrings.WRONGINPUT;
+import static it.unimol.gameengine.utils.UtilStrings.WRONGINPUTTITLE;
 
 /**
  * Graphical Implementation of a Selection Screen for the Difficulty of the Game
@@ -21,32 +45,45 @@ import static it.unimol.gameengine.utils.UtilStrings.*;
  */
 public class DifficultyPanel extends JPanel {
     private final GamePanel gamePanel;
+
     private JLabel gameName;
+
     private JLabel selectionText;
+
     private JButton easyBtn;
+
     private JButton normalBtn;
+
     private JButton hardBtn;
+
     private JButton customBtn;
+
     private JButton goBackBtn;
 
     private JLabel rowLabel;
+
     private JLabel columnLabel;
+
     private JLabel bombLabel;
+
     private JTextField rowField;
+
     private JTextField columnField;
+
     private JTextField bombField;
+
     private JButton confirmCustomBtn;
 
     private boolean hidden;
 
     /**
      * Class Constructor that initializes the Panel and it's Contents and handles the creation of a new Game board
-     * @param gamePanel the panel in which the Game board will be generated
+     * @param gamePanelInput the panel in which the Game board will be generated
      */
-    public DifficultyPanel(GamePanel gamePanel) {
+    public DifficultyPanel(GamePanel gamePanelInput) {
         super();
         this.setSize(500, 470);
-        this.gamePanel = gamePanel;
+        this.gamePanel = gamePanelInput;
         this.setLayout(new GridBagLayout());
         this.setBackground(Color.DARK_GRAY);
         this.initializeAllComponents();
@@ -207,7 +244,7 @@ public class DifficultyPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                if(hidden) {
+                if (hidden) {
                     visualizeHiddenComponents();
                 } else {
                     hideHiddenComponents();
