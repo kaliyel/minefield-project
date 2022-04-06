@@ -34,6 +34,6 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: checkstyle-report
-          path:
+          path: |
             -gameui/target/checkstyle-result.xml
             -gameengine/target/checkstyle-result.xml
