@@ -29,7 +29,9 @@ jobs:
           path: .
           key: ${{ runner.os }}--${{ env.cache-name }}
       - name: Run checkstyle
-        run: mvn -B checkstyle:check
+        run: |
+          mvn -B checkstyle:check
+          ls
       - name: Upload report
         uses: actions/upload-artifact@v2
         with:
