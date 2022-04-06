@@ -32,6 +32,8 @@ jobs:
         run: |
           mvn -B checkstyle:check
           mkdir checkstyle-reports
+          ls gameengine/target
+          ls gameui/target
           mv gameengine/target/site checkstyle-reports/gameengine-report
           mv gameui/target/site checkstyle-reports/gameui-report
       - name: Upload report
