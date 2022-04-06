@@ -60,10 +60,10 @@ jobs:
           key: ${{ runner.os }}--${{ env.cache-name }}
       - name: Run spotbugs
         run: |
-          mvn -B compile checkstyle:check
+          mvn -B compile spotbugs:check
           mkdir spotbugs-reports
-          ls gameengine/target
-          ls gameui/target
+          mv gameengine/target/spotbugsXml.xml spotbugs-reports/gameengineXml.xml
+          mv gameui/target/spotbugsXml.xml checkstyle-reports/gamuiXml.xml
       - name: Upload report
         uses: actions/upload-artifact@v2
         with:
