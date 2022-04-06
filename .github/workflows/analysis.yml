@@ -23,8 +23,11 @@ jobs:
           cache: maven
       - name: cache
         uses: actions/cache@v3
+        env:
+          cache-nanme: cache-checkstyle
         with:
           path: .
+          key: ${{ runner.os }}--${{ env.cache-name }}
       - name: Run checkstyle
         run: mvn -B checkstyle:check
       - name: Upload report
