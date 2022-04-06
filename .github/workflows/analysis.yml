@@ -21,11 +21,12 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
           cache: maven
-      - name: Run checkstyle
+      - name: cache
         uses: actions/cache@v3
         with:
-          path: gameengine/pom.xml
-        run: mvn -B checkstyle:checkstyle
+          path: .
+      - name: Run checkstyle
+        run: mvn -B checkstyle:check
       - name: Upload report
         uses: actions/upload-artifact@v2
         with:
