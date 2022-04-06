@@ -62,8 +62,8 @@ jobs:
         run: |
           mvn -B compile checkstyle:check
           mkdir spotbugs-reports
-          mv gameengine/target/spotbugsXml.xml spotbugs-reports/gameengineXml.xml
-          mv gameui/target/spotbugsXml.xml checkstyle-reports/gamuiXml.xml
+          ls gameengine/target
+          ls gameui/target
       - name: Upload report
         uses: actions/upload-artifact@v2
         with:
