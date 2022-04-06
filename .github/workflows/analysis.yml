@@ -31,9 +31,11 @@ jobs:
       - name: Run checkstyle
         run: |
           mvn -B checkstyle:check
-          ls
+          mkdir checkstyle-reports
+          mv gameengine/target/site checkstyle-reports/gameengine-report
+          mv gameui/target/site checkstyle-reports/gameui-report
       - name: Upload report
         uses: actions/upload-artifact@v2
         with:
-          name: checkstyle-report
-          path: gameengine/target/checkstyle-result.xml
+          name: checkstyle-reports
+          path: checkstyle-reports
