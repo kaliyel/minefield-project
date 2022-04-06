@@ -22,7 +22,11 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Run checkstyle
-        run: mvn -B checkstyle:checkstyle
+        run: |
+          cd gameengine
+          mvn -B checkstyle:checkstyle
+          cd ../gameui
+          mvn -B checkstyle:checkstyle
       - name: Upload report
         uses: actions/upload-artifact@v2
         with:
