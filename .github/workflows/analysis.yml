@@ -35,5 +35,5 @@ jobs:
         with:
           name: checkstyle-report
           path: |
-            -gameui/target/checkstyle-result.xml
-            -gameengine/target/checkstyle-result.xml
+            -./gameui/target/checkstyle-result.xml
+            -./gameengine/target/checkstyle-result.xml
