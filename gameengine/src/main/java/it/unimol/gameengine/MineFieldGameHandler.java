@@ -13,11 +13,11 @@ import it.unimol.gameengine.utils.GameStatus;
  *
  * @author Maurizio Albani
  */
-public final class MineFieldGameHandler{
+public final class MineFieldGameHandler {
     private static final MineFieldGameHandler INSTANCE = new MineFieldGameHandler();
 
-    public static MineFieldGameHandler getInstance(){
-        return MineFieldGameHandler.INSTANCE ;
+    public static MineFieldGameHandler getInstance() {
+        return MineFieldGameHandler.INSTANCE;
     }
 
     private static MineFieldBoard gameBoard;
