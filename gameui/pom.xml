@@ -93,6 +93,26 @@
                     </execution>
                 </executions>
             </plugin>
+
+                <plugin>
+                    <groupId>com.github.spotbugs</groupId>
+                    <artifactId>spotbugs-maven-plugin</artifactId>
+                    <version>4.5.3.0</version>
+                    <configuration>
+                        <failOnError>false</failOnError>
+                    </configuration>
+                </plugin>
         </plugins>
     </build>
+<!--
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+                <version>4.5.3.0</version>
+            </plugin>
+        </plugins>
+    </reporting>
+    -->
 </project>
