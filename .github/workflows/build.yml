@@ -28,4 +28,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: artifact
-          path: gameui/target/MinefieldGame.jar
+          path: target/MinefieldGame-1.0-SNAPSHOT.jar
