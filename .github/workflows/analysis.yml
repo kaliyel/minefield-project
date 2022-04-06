@@ -23,9 +23,7 @@ jobs:
           cache: maven
       - name: Run checkstyle
         run: |
-          cd gameengine
-          mvn -B checkstyle:checkstyle
-          cd ../gameui
+          cd gameui
           mvn -B checkstyle:checkstyle
       - name: Upload report
         uses: actions/upload-artifact@v2
