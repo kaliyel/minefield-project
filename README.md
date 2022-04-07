@@ -24,8 +24,3 @@ docker run -it --rm --net=host -e DISPLAY=$DISPLAY --device=/dev/snd --name mine
 ### Disclamer
 (EN) All rights of resources used in this project belong to their respective owners. <br />
 (IT) Tutti i diritti delle risorse utilizzate in questo progetto sono di proprietà dei rispettivi proprietari.
-
-
-check the dockerfile
-
-
