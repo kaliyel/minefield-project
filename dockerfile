@@ -1,8 +1,7 @@
 # syntax=docker/dockerfile:1
 
 # this is the base image I'll use to build and execute java code
-#riprova a mettere jdk11
-FROM openjdk:8
+FROM openjdk:11
 
 # I run these two commands to install the dependencies for the build and execution of the app
 RUN apt-get update
@@ -18,4 +17,4 @@ WORKDIR /usr/minefield
 RUN mvn clean package
 
 # finally i run the produced jar file
-CMD ["java", "-jar", "./gameui/target/MinefieldGame.jar"]
+CMD ["java", "-jar", "./target/MinefieldGame-1.0-SNAPSHOT.jar"]
